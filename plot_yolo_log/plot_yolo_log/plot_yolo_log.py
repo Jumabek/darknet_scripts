@@ -12,11 +12,6 @@ def main(argv):
         help = "path to log file"
         )
 
-    parser.add_argument(
-        "option",
-        help = "0 -> loss vs iter"
-        )
-    
     args = parser.parse_args()
 
     f = open(args.log_file)
