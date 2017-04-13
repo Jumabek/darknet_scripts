@@ -1,0 +1,5 @@
+Simple script to plot YOLO log
+It will plot avarege_loss vs num_of_iterations
+
+Usage: 
+python plot_yolo_log.py C:\darknet\build\darknet\x64\log\pepsi.log 
