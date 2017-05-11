@@ -7,13 +7,13 @@ This repo contains my auxilary scripts to work with darknet deep learning famewo
 <ul>
 
 <li>
-Original yolo-voc.cfg anchor is drawn in 416x416 blank image
+yolo-voc.cfg anchors are provided by the original author
 <img src= 'https://github.com/Jumabek/darknet_scripts/blob/master/vizualize_anchors/vizualize_anchors/voc/yolo-voc.png' />
 </li>
 <br />
 
 <li>
-Computed by gen_anchors.py yolo-voc-reproduce.cfg anchor is drawn in 416x416 blank image
+yolo-voc-reproduce.cfg anchors computed by gen_anchors.py 
 <img src= 'https://github.com/Jumabek/darknet_scripts/blob/master/vizualize_anchors/vizualize_anchors/voc/anchors5.png' />
 </li>
 
