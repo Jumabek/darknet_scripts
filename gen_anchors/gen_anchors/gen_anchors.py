@@ -11,13 +11,11 @@ import numpy as np
 import sys
 import os
 import shutil
-import random
-      
-def get_IoU(x,centroids):
-    
+import random 
 
 def IOU(x,centroids):
     dists = []
+    k = len(centroids)
     for centroid in centroids:
         c_w,c_h = centroid
         w,h = x
@@ -29,8 +27,8 @@ def IOU(x,centroids):
             dist = c_w*h/(w*h + c_w*(c_h-h))
         else: #means both w,h are bigger than c_w and c_h respectively
             dist = (c_w*c_h)/(w*h)
-        dists.append(dist)
-    return np.array(dists)
+        dists.append(dist) # will become (k,) shape
+    return np.array(dists) 
 
 def avg_IOU(X,centroids):
     n,d = X.shape
@@ -49,14 +47,45 @@ def write_anchors_to_file(centroids,X,anchor_file):
     
     num_anchors = anchors.shape[0]
     for i in range(num_anchors-1):
-        f.write('%f,%f, '%(anchors[i][0],anchors[i][1]))
+        f.write('%0.2f,%0.2f, '%(anchors[i][0],anchors[i][1]))
 
     #there should not be comma after last anchor, that's why
-    f.write('%f,%f\n'%(anchors[num_anchors-1][0],anchors[num_anchors-1][1]))
+    f.write('%0.2f,%0.2f\n'%(anchors[num_anchors-1][0],anchors[num_anchors-1][1]))
     
     f.write('%f\n'%(avg_IOU(X,centroids)))
 
 def kmeans(X,centroids,eps,anchor_file):
+    
+    N = X.shape[0]
+    iterations = 0
+    k,dim = centroids.shape
+    prev_assignments = np.ones(N)*(-1)    
+
+    while True:
+        D = []            
+        for i in range(N):
+            D.append(1 - IOU(X[i],centroids))
+        D = np.array(D) # D.shape = (N,k)
+            
+        #assign samples to centroids 
+        assignments = np.argmin(D,axis=1)
+        
+        if (assignments == prev_assignments).all():
+            print "Centroids = ",centroids            
+            write_anchors_to_file(centroids,X,anchor_file)
+            return
+
+        #calculate the new centroids
+        centroid_sums=np.zeros((k,dim),np.float)
+        for i in range(N):
+            centroid_sums[assignments[i]]+=X[i]
+        
+        for j in range(k):            
+            centroids[j] = centroid_sums[j]/(np.sum(assignments==j)+0.0005)
+        
+        prev_assignments = assignments.copy()
+        
+def kmeans_noisy(X,centroids,eps,anchor_file):
     
     D=[]
     old_D = []
@@ -70,7 +99,7 @@ def kmeans(X,centroids,eps,anchor_file):
         for i in range(X.shape[0]):
             d = 1 - IOU(X[i],centroids)
             D.append(d)
-        D = np.array(D)
+        D = np.array(D) # D.shape = (N,k)
         if len(old_D)>0:
             diff = np.sum(np.abs(D-old_D))
         
@@ -106,6 +135,7 @@ def kmeans(X,centroids,eps,anchor_file):
         old_D = D.copy()
     print D
 
+
 def main(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument('-filelist', default = 'E:\\dataset\\face_detection\\WIDER\\filelist_all.txt', 
@@ -132,11 +162,19 @@ def main(argv):
     for line in lines:
         
         line = line.replace('images','labels')
+        line = line.replace('img1','labels')
+        line = line.replace('JPEGImages','labels')        
+
         line = line.replace('.jpg','.txt')
 
         f2 = open(line)
         for line in f2.readlines():
             line = line.rstrip('\n')
+            cls_id = line.split(' ')[0]
+
+            cls_id = int(cls_id)
+            if cls_id!=0:
+                continue
             w,h = line.split(' ')[3:]
             #print w,h
             annotation_dims.append(map(float,(w,h)))

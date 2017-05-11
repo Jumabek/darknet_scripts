@@ -26,7 +26,7 @@ def main(argv):
 
     colors = [(255,0,0),(255,255,0),(0,255,0),(0,0,255),(0,255,255),(55,0,0),(255,55,0),(0,55,0),(0,0,25),(0,255,55)]
 
-    anchor_files = [f for f in listdir(args.anchor_dir) if isfile(join(args.anchor_dir, f))]
+    anchor_files = [f for f in listdir(args.anchor_dir) if (join(args.anchor_dir, f)).endswith('.txt')]
     for anchor_file in anchor_files:
         blank_image = np.zeros((H,W,3),np.uint8)
         

@@ -35,10 +35,10 @@ def open_file(root,id):
      
 def main(argv):
     parser = argparse.ArgumentParser()
-    parser.add_argument('-predictions_file', default = 'C:\\darknet\\build\\darknet\\x64\\results\\comp4_det_test_person.txt', # This dir name I cannot change cuz it will cause confusion 
+    parser.add_argument('-predictions_file', default = 'C:\\darknet_fire_detection\\build\\darknet\\x64\\results\\comp-caltech-voc2-8K.txt', # This dir name I cannot change cuz it will cause confusion 
                         help='path to yolo predictions\n', )
     
-    parser.add_argument('-caltech_pedestrian_root', default = 'E:\\dataset\\CaltechPedestrians\\code\\data-USA\\res\\caltech-161K-vis-original2x',  
+    parser.add_argument('-caltech_pedestrian_root', default = 'F:\\dataset\\CaltechPedestrians\\code\\data-USA\\res\\comp-caltech-voc2-8K',  
                         help='where to save converted predictions')
         
     args = parser.parse_args()

@@ -25,16 +25,22 @@ def main(argv):
 
     iters = []
     loss = []
+    
+    fig,ax = plt.subplots()
+
     for line in lines:
         if line[0] in numbers and line[:2]!='1,':
             args = line.split(" ")
             iters.append(int(args[0][:-1]))
             loss.append(float(args[2]))             
-    plt.plot(iters,loss)
+    ax.plot(iters,loss)
     plt.xlabel('iters')
     plt.ylabel('loss')
     plt.grid()
 
+    ticks = range(0,250,10)
+    
+    #ax.set_yticks(ticks)
     plt.show()
     
 if __name__ == "__main__":
