@@ -4,6 +4,7 @@ This repo contains my auxilary scripts to work with darknet deep learning famewo
 <h2>Is gen_anchors.py same as YOLOv2 anchor computation?</h2> 
 
 <h2> Yes, almost. Look at the two anchors below:</h2>
+<br />
 <ul>
 
 <li>
