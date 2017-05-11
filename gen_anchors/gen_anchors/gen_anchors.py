@@ -108,8 +108,7 @@ def kmeans_noisy(X,centroids,eps,anchor_file):
         if diff<eps or iterations>100:
             print "Number of iterations took = %d"%(iterations)
             print "Centroids = ",centroids
-
-            
+      
             write_anchors_to_file(centroids,X,anchor_file)
             
             return
@@ -130,8 +129,6 @@ def kmeans_noisy(X,centroids,eps,anchor_file):
         
         print 'new centroids = ',centroids        
 
-
-
         old_D = D.copy()
     print D
 
@@ -148,14 +145,11 @@ def main(argv):
    
     args = parser.parse_args()
     
-
     if not os.path.exists(args.output_dir):
         os.mkdir(args.output_dir)
 
-
     f = open(args.filelist)
-    
-
+  
     lines = [line.rstrip('\n') for line in f.readlines()]
     
     annotation_dims = []
@@ -179,8 +173,7 @@ def main(argv):
             #print w,h
             annotation_dims.append(map(float,(w,h)))
     annotation_dims = np.array(annotation_dims)
-    
-    
+      
     eps = 0.005
     
     if args.num_clusters == 0:
@@ -197,7 +190,6 @@ def main(argv):
         indices = [ random.randrange(annotation_dims.shape[0]) for i in range(args.num_clusters)]
         centroids = annotation_dims[indices]
         kmeans(annotation_dims,centroids,eps,anchor_file)
-
 
         print 'centroids.shape', centroids.shape
         print 'Filelist = %s'%(args.filelist)
