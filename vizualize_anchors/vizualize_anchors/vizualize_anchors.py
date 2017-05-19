@@ -9,9 +9,7 @@ from os.path import isfile, join
 def main(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument('-anchor_dir', default = 'C:\darknet\scripts\gen_anchors\gen_anchors\wider', 
-                        help='path to anchors\n', )
-    parser.add_argument('-visualization_dir', default = 'visualization', 
-                        help='directory to save visualizations\n', )    
+                        help='path to anchors\n', ) 
     
     args = parser.parse_args()
     

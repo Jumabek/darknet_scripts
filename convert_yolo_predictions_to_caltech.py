@@ -35,10 +35,10 @@ def open_file(root,id):
      
 def main(argv):
     parser = argparse.ArgumentParser()
-    parser.add_argument('-predictions_file', default = 'C:\\darknet_fire_detection\\build\\darknet\\x64\\results\\caltech-voc-608-14K.txt', # This dir name I cannot change cuz it will cause confusion 
+    parser.add_argument('-predictions_file', default = 'C:\\darknet_fire_detection\\build\\darknet\\x64\\results\\aggregate-voc-tiny\\aggregate-voc-tiny-1000.txt', # This dir name I cannot change cuz it will cause confusion 
                         help='path to yolo predictions\n', )
     
-    parser.add_argument('-caltech_pedestrian_root', default = 'F:\\dataset\\CaltechPedestrians\\code\\data-USA\\res\\caltech-voc-608-14K',  
+    parser.add_argument('-caltech_pedestrian_root', default = 'F:\\dataset\\CaltechPedestrians\\code\\data-USA\\res\\avt\\aggregate-voc-tiny-1000',  
                         help='where to save converted predictions')
         
     args = parser.parse_args()
@@ -59,9 +59,6 @@ def main(argv):
         print '%s is non empty please specify empty dir'%(args.caltech_pedestrian_root)
         print subdirs
         return
-    else:
-        print '%s is empty ;). Continuing'%(args.caltech_pedestrian_root)
-
 
     single_file_predictions = []
     

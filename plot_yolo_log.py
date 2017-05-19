@@ -18,9 +18,6 @@ def main(argv):
     
     lines  = [line.rstrip("\n") for line in f.readlines()]
     
-    # skip the first 3 lines
-    lines = lines[2:]
-    
     numbers = {'1','2','3','4','5','6','7','8','9'}
 
     iters = []
