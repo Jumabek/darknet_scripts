@@ -12,6 +12,7 @@ import sys
 import os
 import shutil
 import random 
+import math
 
 def IOU(x,centroids):
     similarities = []
@@ -41,11 +42,21 @@ def avg_IOU(X,centroids):
 def write_anchors_to_file(centroids,X,anchor_file):
     f = open(anchor_file,'w')
     
-    anchors = centroids*416/32
-    
-    widths = anchors[:,0]
-    sorted_indices = np.argsort(widths)
+    #anchors = centroids*416/32
+    anchors = centroids.copy()
+    print anchors.shape
+    avg_voc_width = 471
+    avg_voc_height = 385
 
+    for i in range(anchors.shape[0]):
+        anchors[i][0]*=avg_voc_width/32.
+        anchors[i][1]*=avg_voc_height/32.
+         
+
+    #widths = anchors[:,0]
+    #sorted_indices = np.argsort(widths)
+    sorted_indices = range(0,anchors.shape[0])
+    print 'Anchors = ', anchors
     print 'Anchors = ', anchors[sorted_indices] 
         
     for i in sorted_indices[:-1]:
@@ -55,25 +66,29 @@ def write_anchors_to_file(centroids,X,anchor_file):
     f.write('%0.2f,%0.2f\n'%(anchors[sorted_indices[-1:],0],anchors[sorted_indices[-1:],1]))
     
     f.write('%f\n'%(avg_IOU(X,centroids)))
-
+    print
 def kmeans(X,centroids,eps,anchor_file):
     
     N = X.shape[0]
     iterations = 0
     k,dim = centroids.shape
     prev_assignments = np.ones(N)*(-1)    
+    iter = 0
+    old_D = np.zeros((N,k))
 
     while True:
-        D = []            
+        D = [] 
+        iter+=1           
         for i in range(N):
             d = 1 - IOU(X[i],centroids)
             D.append(d)
         D = np.array(D) # D.shape = (N,k)
-            
+        
+        print "distance = {}".format(math.fabs(np.sum(D-old_D)))     
         #assign samples to centroids 
         assignments = np.argmin(D,axis=1)
         
-        if (assignments == prev_assignments).all():
+        if (assignments == prev_assignments).all() and iter>100:
             print "Centroids = ",centroids            
             write_anchors_to_file(centroids,X,anchor_file)
             return
@@ -84,9 +99,10 @@ def kmeans(X,centroids,eps,anchor_file):
             centroid_sums[assignments[i]]+=X[i]
         
         for j in range(k):            
-            centroids[j] = centroid_sums[j]/(np.sum(assignments==j)+0.0005)
+            centroids[j] = centroid_sums[j]/(np.sum(assignments==j))
         
-        prev_assignments = assignments.copy()       
+        prev_assignments = assignments.copy()     
+        old_D = D.copy()  
 
 def main(argv):
     parser = argparse.ArgumentParser()
@@ -108,11 +124,17 @@ def main(argv):
     lines = [line.rstrip('\n') for line in f.readlines()]
     
     annotation_dims = []
+
+    size = np.zeros((1,1,3))
     for line in lines:
-        
+        #im = cv2.imread(line)
+
+        #size += im.shape            
+    
         line = line.replace('images','labels')
         line = line.replace('img1','labels')
         line = line.replace('JPEGImages','labels')        
+        
 
         line = line.replace('.jpg','.txt')
         line = line.replace('.png','.txt')
@@ -129,7 +151,7 @@ def main(argv):
             #print w,h
             annotation_dims.append(map(float,(w,h)))
     annotation_dims = np.array(annotation_dims)
-      
+    print "The avarage im dimensions = {} ".format(size/len(lines)) 
     eps = 0.005
     
     if args.num_clusters == 0:
