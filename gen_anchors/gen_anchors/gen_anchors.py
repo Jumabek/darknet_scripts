@@ -14,6 +14,9 @@ import shutil
 import random 
 import math
 
+width_in_cfg_file = 416.
+height_in_cfg_file = 416.
+
 def IOU(x,centroids):
     similarities = []
     k = len(centroids)
@@ -45,17 +48,15 @@ def write_anchors_to_file(centroids,X,anchor_file):
     #anchors = centroids*416/32
     anchors = centroids.copy()
     print anchors.shape
-    avg_voc_width = 471
-    avg_voc_height = 385
 
     for i in range(anchors.shape[0]):
-        anchors[i][0]*=avg_voc_width/32.
-        anchors[i][1]*=avg_voc_height/32.
+        anchors[i][0]*=width_in_cfg_file/32.
+        anchors[i][1]*=height_in_cfg_file/32.
          
 
-    #widths = anchors[:,0]
-    #sorted_indices = np.argsort(widths)
-    sorted_indices = range(0,anchors.shape[0])
+    widths = anchors[:,0]
+    sorted_indices = np.argsort(widths)
+
     print 'Anchors = ', anchors
     print 'Anchors = ', anchors[sorted_indices] 
         
@@ -67,6 +68,7 @@ def write_anchors_to_file(centroids,X,anchor_file):
     
     f.write('%f\n'%(avg_IOU(X,centroids)))
     print
+
 def kmeans(X,centroids,eps,anchor_file):
     
     N = X.shape[0]
@@ -85,6 +87,7 @@ def kmeans(X,centroids,eps,anchor_file):
         D = np.array(D) # D.shape = (N,k)
         
         print "distance = {}".format(math.fabs(np.sum(D-old_D)))     
+        
         #assign samples to centroids 
         assignments = np.argmin(D,axis=1)
         
@@ -96,8 +99,7 @@ def kmeans(X,centroids,eps,anchor_file):
         #calculate the new centroids
         centroid_sums=np.zeros((k,dim),np.float)
         for i in range(N):
-            centroid_sums[assignments[i]]+=X[i]
-        
+            centroid_sums[assignments[i]]+=X[i]        
         for j in range(k):            
             centroids[j] = centroid_sums[j]/(np.sum(assignments==j))
         
@@ -106,7 +108,7 @@ def kmeans(X,centroids,eps,anchor_file):
 
 def main(argv):
     parser = argparse.ArgumentParser()
-    parser.add_argument('-filelist', default = 'E:\\dataset\\face_detection\\WIDER\\filelist_all.txt', 
+    parser.add_argument('-filelist', default = '\\path\\to\\voc\\filelist\\train.txt', 
                         help='path to filelist\n' )
     parser.add_argument('-num_clusters', default = 0, type = int, 
                         help='number of clusters\n' )  
@@ -127,10 +129,10 @@ def main(argv):
 
     size = np.zeros((1,1,3))
     for line in lines:
-        #im = cv2.imread(line)
+        im = cv2.imread(line)
 
-        #size += im.shape            
-    
+        [im_h,im_w]= im.shape[:2]
+                    
         line = line.replace('images','labels')
         line = line.replace('img1','labels')
         line = line.replace('JPEGImages','labels')        
@@ -148,6 +150,7 @@ def main(argv):
             if cls_id!=0:
                 continue
             w,h = line.split(' ')[3:]
+            
             #print w,h
             annotation_dims.append(map(float,(w,h)))
     annotation_dims = np.array(annotation_dims)
