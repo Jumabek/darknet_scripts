@@ -30,6 +30,7 @@ C:\darknet\build\darknet\x64\data\voc\train.txt -output_dir voc-anchors </strong
 <h4>How to visualize anchors?</h4>
 type in the command line <br />
 <strong>python vizualize_anchors.py -anchor_dir F:\code\darknet_scripts\gen_anchors\gen_anchors\voc-anchors </strong>
+<br />
 and you will get png images inside -anchor_dir
 
 
