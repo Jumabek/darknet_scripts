@@ -4,8 +4,9 @@ type in the command line <br />
 </br>
 Filelist is the text file that contains path to images in your database.
 Here is an instruction on how to prepare filelist (train.txt) for VOC (sections 2 through 5) https://github.com/AlexeyAB/darknet#how-to-train-pascal-voc-data
-
+<br/>
 This is a sample of how my train.txt filelist looks like:
+<br/>
 <i>
 C:\darknet\build\darknet\x64\data\voc/VOCdevkit/VOC2007/JPEGImages/000012.jpg
 C:\darknet\build\darknet\x64\data\voc/VOCdevkit/VOC2007/JPEGImages/000017.jpg
