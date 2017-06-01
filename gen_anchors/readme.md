@@ -16,11 +16,12 @@ C:\darknet\build\darknet\x64\data\voc/VOCdevkit/VOC2007/JPEGImages/000026.jpg
 C:\darknet\build\darknet\x64\data\voc/VOCdevkit/VOC2007/JPEGImages/000032.jpg
 C:\darknet\build\darknet\x64\data\voc/VOCdevkit/VOC2007/JPEGImages/000033.jpg
 C:\darknet\build\darknet\x64\data\voc/VOCdevkit/VOC2007/JPEGImages/000034.jpg
-</i>
+</i><br /><br />
 
-<br />
+
 
 gen_anchors.py reads yolo format annotations from filelist (train.txt) <br />
+
 
 when you run the following command, you should get voc-anchors folder which contain number of anchors from 1 to 10.  
 <br />
