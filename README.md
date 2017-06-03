@@ -17,10 +17,11 @@ follow the below steps 2-5(cut from AlexeyAB's repos)
 
 5. Run command: `type 2007_train.txt 2007_val.txt 2012_*.txt > train.txt`
 
-Next, call 
+Next, call <br/> 
 <strong>
 gen_anchors.py -filelist //path//to//voc//filelist/list//train.txt -output_dir generated_anchors/voc-reproduce -num_clusters 5
 </strong>
+<br />
 You will have anchors5.txt in generated_anchors/voc-reproduce folder.
 
 
