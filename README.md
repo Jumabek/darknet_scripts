@@ -19,10 +19,16 @@ follow the below steps 2-5(cut from AlexeyAB's repos)
 
 Next, call <br/> 
 <strong>
-gen_anchors.py -filelist //path//to//voc//filelist/list//train.txt -output_dir generated_anchors/voc-reproduce -num_clusters 5
+python gen_anchors.py -filelist //path//to//voc//filelist/list//train.txt -output_dir generated_anchors/voc-reproduce -num_clusters 5
 </strong>
 <br />
-You will have anchors5.txt in generated_anchors/voc-reproduce folder.
+You will have anchors5.txt in generated_anchors/voc-reproduce folder. <br />
+
+<h2>How to visualize genereted anchors?</h2>
+After completing the steps above, execute <br />
+<strong> python visualize_anchors.py -anchor_dir generated_anchors/voc-reproduce </strong>
+<br />
+Inside the generated_anchors/voc-reproduce directory you will have png visualization of the anchors <br />
 
 
 
@@ -42,5 +48,5 @@ yolo-voc.cfg anchors are provided by the original author
 yolo-voc-reproduce.cfg anchors computed by gen_anchors.py 
 <img src= 'https://github.com/Jumabek/darknet_scripts/blob/master/generated_anchors/voc-anchors-reproduce/anchors5.png' />
 </li>
-
+<br />
 </ul>
