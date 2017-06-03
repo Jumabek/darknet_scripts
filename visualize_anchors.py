@@ -8,7 +8,7 @@ from os.path import isfile, join
 
 def main(argv):
     parser = argparse.ArgumentParser()
-    parser.add_argument('-anchor_dir', default = 'C:\darknet\scripts\gen_anchors\gen_anchors\wider', 
+    parser.add_argument('-anchor_dir', default = 'generated_anchors/voc-anchors', 
                         help='path to anchors\n', ) 
     
     args = parser.parse_args()

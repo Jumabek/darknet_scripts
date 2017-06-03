@@ -45,7 +45,6 @@ def avg_IOU(X,centroids):
 def write_anchors_to_file(centroids,X,anchor_file):
     f = open(anchor_file,'w')
     
-    #anchors = centroids*416/32
     anchors = centroids.copy()
     print anchors.shape
 
@@ -57,7 +56,6 @@ def write_anchors_to_file(centroids,X,anchor_file):
     widths = anchors[:,0]
     sorted_indices = np.argsort(widths)
 
-    print 'Anchors = ', anchors
     print 'Anchors = ', anchors[sorted_indices] 
         
     for i in sorted_indices[:-1]:
@@ -86,17 +84,17 @@ def kmeans(X,centroids,eps,anchor_file):
             D.append(d)
         D = np.array(D) # D.shape = (N,k)
         
-        print "distance = {}".format(math.fabs(np.sum(D-old_D)))     
-        
+        print "iter {}: dists = {}".format(iter,np.sum(np.abs(old_D-D)))
+            
         #assign samples to centroids 
         assignments = np.argmin(D,axis=1)
         
-        if (assignments == prev_assignments).all() and iter>100:
+        if (assignments == prev_assignments).all() :
             print "Centroids = ",centroids            
             write_anchors_to_file(centroids,X,anchor_file)
             return
 
-        #calculate the new centroids
+        #calculate new centroids
         centroid_sums=np.zeros((k,dim),np.float)
         for i in range(N):
             centroid_sums[assignments[i]]+=X[i]        
@@ -110,10 +108,10 @@ def main(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument('-filelist', default = '\\path\\to\\voc\\filelist\\train.txt', 
                         help='path to filelist\n' )
+    parser.add_argument('-output_dir', default = 'generated_anchors/anchors', type = str, 
+                        help='Output anchor directory\n' )  
     parser.add_argument('-num_clusters', default = 0, type = int, 
                         help='number of clusters\n' )  
-    parser.add_argument('-output_dir', default = 'anchors', type = str, 
-                        help='Output anchor directory\n' )  
 
    
     args = parser.parse_args()
@@ -129,9 +127,6 @@ def main(argv):
 
     size = np.zeros((1,1,3))
     for line in lines:
-        im = cv2.imread(line)
-
-        [im_h,im_w]= im.shape[:2]
                     
         line = line.replace('images','labels')
         line = line.replace('img1','labels')
@@ -144,17 +139,11 @@ def main(argv):
         f2 = open(line)
         for line in f2.readlines():
             line = line.rstrip('\n')
-            cls_id = line.split(' ')[0]
-
-            cls_id = int(cls_id)
-            if cls_id!=0:
-                continue
-            w,h = line.split(' ')[3:]
-            
+            w,h = line.split(' ')[3:]            
             #print w,h
             annotation_dims.append(map(float,(w,h)))
     annotation_dims = np.array(annotation_dims)
-    print "The avarage im dimensions = {} ".format(size/len(lines)) 
+  
     eps = 0.005
     
     if args.num_clusters == 0:
@@ -165,15 +154,12 @@ def main(argv):
             centroids = annotation_dims[indices]
             kmeans(annotation_dims,centroids,eps,anchor_file)
             print 'centroids.shape', centroids.shape
-        print 'Filelist = %s'%(args.filelist)
     else:
         anchor_file = join( args.output_dir,'anchors%d.txt'%(args.num_clusters))
         indices = [ random.randrange(annotation_dims.shape[0]) for i in range(args.num_clusters)]
         centroids = annotation_dims[indices]
         kmeans(annotation_dims,centroids,eps,anchor_file)
-
         print 'centroids.shape', centroids.shape
-        print 'Filelist = %s'%(args.filelist)
 
 if __name__=="__main__":
     main(sys.argv)
