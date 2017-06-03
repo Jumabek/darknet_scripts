@@ -17,6 +17,14 @@ follow the below steps 2-5(cut from AlexeyAB's repos)
 
 5. Run command: `type 2007_train.txt 2007_val.txt 2012_*.txt > train.txt`
 
+Next, call 
+<strong>
+gen_anchors.py -filelist //path//to//voc//filelist/list//train.txt -output_dir generated_anchors/voc-reproduce -num_clusters 5
+</strong>
+You will have anchors5.txt in generated_anchors/voc-reproduce folder.
+
+
+
 <h2>Is gen_anchors.py same as YOLOv2 anchor computation?</h2> 
 
 <h4> Yes, almost. Look at the two anchors below:</h4>
