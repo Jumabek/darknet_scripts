@@ -62,10 +62,11 @@ Then compute the anchors.
 
 <h2>How to plot YOLO loss?</h2>
 In order to plot a loss, you first need a log of the <i>darknet train</i> command
-For example,below command will save the log into log/aggregate-voc-tiny7.log <br />
+For example,below command will save the log into log/aggregate-voc-tiny7.log <br /><br />
 <i>
 darknet.exe detector train data/aggregate-voc-tiny7.data cfg/aggregate-voc-tiny7.cfg  backup/aggregate-voc-tiny7/aggregate-voc-tiny7_21000.weights >> log/aggregate-voc-tiny7.log -gpus 0,1
 </i>
 <br />
-Next, to plot the loss, execute
+<br />
+Next, to plot the loss, execute <br/>
 <i>python plot_yolo_log.py \\path\\to\\log\\aggregate-voc-tiny7.log</i>
