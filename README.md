@@ -50,3 +50,11 @@ yolo-voc-reproduce.cfg anchors computed by gen_anchors.py
 </li>
 <br />
 </ul>
+
+
+
+<h2>How to get anchors if My input for network is bigger than 416?</h2>
+Simply change the lines here https://github.com/Jumabek/darknet_scripts/blob/master/gen_anchors.py#L17
+to your input dimension.
+Then compute the anchors.
+
