@@ -1,14 +1,12 @@
 # darknet_scripts
 This repo contains my auxilary scripts to work with darknet deep learning famework
 1. [How to reproduce YOLOv2 anchors for yolo-voc.cfg?](#how-to-reproduce-yolov2-anchors-for-yolo-voccfg)
-2. [How to visualize genereted anchors?](#how-to-compile)
-3. [Is gen_anchors.py same as YOLOv2 anchor computation](#how-to-train-pascal-voc-data)
-4. [How to plot YOLO loss](#how-to-train-to-detect-your-custom-objects)
+2. [How to visualize genereted anchors?](#how-to-visualize)
+3. [Is gen_anchors.py same as YOLOv2 anchor computation](#is-gen_anchors.py-same)
+4. [How to get anchors if My input for network is bigger than 416?] (#how-to-get-anchors)
+5. [How to plot YOLO loss](#how-to-plot)
 
 ### How to reproduce YOLOv2 anchors for yolo-voc.cfg?
-
-<h2>How to reproduce YOLOv2 anchors for yolo-voc.cfg?</h2>
-follow the below steps 2-5(cut from AlexeyAB's repos)
 
 2. Download The Pascal VOC Data and unpack it to directory `build\darknet\x64\data\voc` will be created dir `build\darknet\x64\data\voc\VOCdevkit\`:
     * http://pjreddie.com/media/files/VOCtrainval_11-May-2012.tar
@@ -30,7 +28,7 @@ python gen_anchors.py -filelist //path//to//voc//filelist/list//train.txt -outpu
 <br />
 You will have anchors5.txt in generated_anchors/voc-reproduce folder. <br />
 
-<h2>How to visualize genereted anchors?</h2>
+### How to visualize genereted anchors?
 After completing the steps above, execute <br />
 <strong> python visualize_anchors.py -anchor_dir generated_anchors/voc-reproduce </strong>
 <br />
@@ -38,7 +36,7 @@ Inside the generated_anchors/voc-reproduce directory you will have png visualiza
 
 
 
-<h2>Is gen_anchors.py same as YOLOv2 anchor computation?</h2> 
+### Is gen_anchors.py same as YOLOv2 anchor computation?
 
 <h4> Yes, almost. Look at the two anchors below:</h4>
 <br />
@@ -59,14 +57,14 @@ yolo-voc-reproduce.cfg anchors computed by gen_anchors.py
 
 
 
-<h2>How to get anchors if My input for network is bigger than 416?</h2>
+### How to get anchors if My input for network is bigger than 416?
 Simply change the lines here https://github.com/Jumabek/darknet_scripts/blob/master/gen_anchors.py#L17
 to your input dimension.
 Then compute the anchors.
 
 
 
-<h2>How to plot YOLO loss?</h2>
+### How to plot YOLO loss? 
 In order to plot a loss, you first need a log of the <i>darknet train</i> command
 For example,below command will save the log into log/aggregate-voc-tiny7.log <br /><br />
 <i>
