@@ -3,8 +3,8 @@ This repo contains my auxilary scripts to work with darknet deep learning famewo
 1. [How to reproduce YOLOv2 anchors for yolo-voc.cfg?](#how-to-reproduce-yolov2-anchors-for-yolo-voccfg)
 2. [How to visualize genereted anchors?](#how-to-visualize-genereted-anchors)
 3. [Is gen_anchors.py same as YOLOv2 anchor computation?](#is-gen_anchorspy-same-as-yolov2-anchor-computation)
-4. [How to get anchors if My input for network is bigger than 416?](#how-to-plot)
-5. [How to plot YOLO loss](#how-to-plot)
+4. [How to get anchors if My input for network is bigger than 416?](#how-to-get-anchors-if-my-input-for-network-is-bigger-than-416)
+5. [How to plot YOLO loss](#how-to-plot-yolo-loss)
 
 ### How to reproduce YOLOv2 anchors for yolo-voc.cfg?
 
