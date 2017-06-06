@@ -1,15 +1,10 @@
 # darknet_scripts
 This repo contains my auxilary scripts to work with darknet deep learning famework
-1. [How to reproduce YOLOv2 anchors for yolo-voc.cfg?](#how-to-use)
+1. https://github.com/Jumabek/darknet_scripts#how-to-reproduce-yolov2-anchors-for-yolo-voccfg-1
 2. [How to visualize genereted anchors?](#how-to-compile)
 3. [Is gen_anchors.py same as YOLOv2 anchor computation](#how-to-train-pascal-voc-data)
 4. [How to plot YOLO loss](#how-to-train-to-detect-your-custom-objects)
-5. [When should I stop training](#when-should-i-stop-training)
-6. [How to improve object detection](#how-to-improve-object-detection)
-7. [How to mark bounded boxes of objects and create annotation files](#how-to-mark-bounded-boxes-of-objects-and-create-annotation-files)
-8. [How to use Yolo as DLL](#how-to-use-yolo-as-dll)
 
-### How to reproduce YOLOv2 anchors for yolo-voc.cfg?
 <h2>How to reproduce YOLOv2 anchors for yolo-voc.cfg?</h2>
 follow the below steps 2-5(cut from AlexeyAB's repos)
 
