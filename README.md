@@ -5,6 +5,8 @@ This repo contains my auxilary scripts to work with darknet deep learning famewo
 3. [Is gen_anchors.py same as YOLOv2 anchor computation](#how-to-train-pascal-voc-data)
 4. [How to plot YOLO loss](#how-to-train-to-detect-your-custom-objects)
 
+### How to reproduce YOLOv2 anchors for yolo-voc.cfg?
+
 <h2>How to reproduce YOLOv2 anchors for yolo-voc.cfg?</h2>
 follow the below steps 2-5(cut from AlexeyAB's repos)
 
