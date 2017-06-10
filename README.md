@@ -30,7 +30,9 @@ You will have anchors5.txt in generated_anchors/voc-reproduce folder. <br />
 
 ### How to visualize genereted anchors?
 After completing the steps above, execute <br />
-<strong> python visualize_anchors.py -anchor_dir generated_anchors/voc-reproduce </strong>
+```cmd
+python visualize_anchors.py -anchor_dir generated_anchors/voc-reproduce 
+```
 <br />
 Inside the generated_anchors/voc-reproduce directory you will have png visualization of the anchors <br />
 
@@ -67,10 +69,12 @@ Then compute the anchors.
 ### How to plot YOLO loss? 
 In order to plot a loss, you first need a log of the <i>darknet train</i> command
 For example,below command will save the log into log/aggregate-voc-tiny7.log <br /><br />
-<i>
+```cmd
 darknet.exe detector train data/aggregate-voc-tiny7.data cfg/aggregate-voc-tiny7.cfg  backup/aggregate-voc-tiny7/aggregate-voc-tiny7_21000.weights >> log/aggregate-voc-tiny7.log -gpus 0,1
-</i>
+```
 <br />
 <br />
 Next, to plot the loss, execute <br/>
-<i>python plot_yolo_log.py \\path\\to\\log\\aggregate-voc-tiny7.log</i>
+```cmd
+python plot_yolo_log.py \\path\\to\\log\\aggregate-voc-tiny7.log
+```
