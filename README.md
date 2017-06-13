@@ -74,7 +74,7 @@ darknet.exe detector train data/aggregate-voc-tiny7.data cfg/aggregate-voc-tiny7
 ```
 <br />
 <br />
-Next, to plot the loss, execute 
-```cmd
+Next, to plot the loss, execute <br />
+```
 python plot_yolo_log.py \\path\\to\\log\\aggregate-voc-tiny7.log
 ```
