@@ -41,7 +41,7 @@ Inside the generated_anchors/voc-reproduce directory you will have png visualiza
 
 ### Is gen_anchors.py same as YOLOv2 anchor computation?
 
-<h4> Yes, almost. Look at the two anchors below:</h4>
+<h4> Yes, almost. Look at the two visualaziations below:</h4>
 <br />
 <ul>
 
