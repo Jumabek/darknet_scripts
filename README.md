@@ -71,9 +71,7 @@ For example,below command will save the log into log/aggregate-voc-tiny7.log <br
 ```cmd
 darknet.exe detector train data/aggregate-voc-tiny7.data cfg/aggregate-voc-tiny7.cfg  backup/aggregate-voc-tiny7/aggregate-voc-tiny7_21000.weights >> log/aggregate-voc-tiny7.log -gpus 0,1
 ```
-<br />
-<br />
-Next, to plot the loss, execute <br />
-```
+Once you have \\path\\to\\log\\aggregate-voc-tiny7.log, plot the loss by executing 
+```cmd
 python plot_yolo_log.py \\path\\to\\log\\aggregate-voc-tiny7.log
 ```
