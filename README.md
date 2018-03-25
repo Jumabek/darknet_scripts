@@ -22,12 +22,11 @@ This repo contains my auxilary scripts to work with darknet deep learning famewo
 
 4. Run command: `type 2007_train.txt 2007_val.txt 2012_*.txt > train.txt`
 
-5. Call <br/> 
+5. Call 
 ```cmd
 python gen_anchors.py -filelist //path//to//voc//filelist/list//train.txt -output_dir generated_anchors/voc-reproduce -num_clusters 5
 ```
-<br />
-You will have anchors5.txt in generated_anchors/voc-reproduce folder. <br />
+  You will have anchors5.txt in generated_anchors/voc-reproduce folder. <br />
 
 ### How to visualize genereted anchors?
 After completing the steps above, execute <br />
