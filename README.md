@@ -9,20 +9,20 @@ This repo contains my auxilary scripts to work with darknet deep learning famewo
 
 ### How to reproduce YOLOv2 anchors for yolo-voc.cfg?
 
-2. Download The Pascal VOC Data and unpack it to directory `build\darknet\x64\data\voc` will be created dir `build\darknet\x64\data\voc\VOCdevkit\`:
+1. Download The Pascal VOC Data and unpack it to directory `build\darknet\x64\data\voc` will be created dir `build\darknet\x64\data\voc\VOCdevkit\`:
     * http://pjreddie.com/media/files/VOCtrainval_11-May-2012.tar
     * http://pjreddie.com/media/files/VOCtrainval_06-Nov-2007.tar
     * http://pjreddie.com/media/files/VOCtest_06-Nov-2007.tar
     
-    2.1 Download file `voc_label.py` to dir `build\darknet\x64\data\voc`: http://pjreddie.com/media/files/voc_label.py
+    1.1 Download file `voc_label.py` to dir `build\darknet\x64\data\voc`: http://pjreddie.com/media/files/voc_label.py
 
-3. Download and install Python for Windows: https://www.python.org/ftp/python/2.7.9/python-2.7.9rc1.amd64.msi
+2. Download and install Python for Windows: https://www.python.org/ftp/python/2.7.9/python-2.7.9rc1.amd64.msi
 
-4. Run command: `python build\darknet\x64\data\voc\voc_label.py` (to generate files: 2007_test.txt, 2007_train.txt, 2007_val.txt, 2012_train.txt, 2012_val.txt)
+3. Run command: `python build\darknet\x64\data\voc\voc_label.py` (to generate files: 2007_test.txt, 2007_train.txt, 2007_val.txt, 2012_train.txt, 2012_val.txt)
 
-5. Run command: `type 2007_train.txt 2007_val.txt 2012_*.txt > train.txt`
+4. Run command: `type 2007_train.txt 2007_val.txt 2012_*.txt > train.txt`
 
-Next, call <br/> 
+5. Call <br/> 
 ```cmd
 python gen_anchors.py -filelist //path//to//voc//filelist/list//train.txt -output_dir generated_anchors/voc-reproduce -num_clusters 5
 ```
