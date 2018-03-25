@@ -1,13 +1,13 @@
 # darknet_scripts
 This repo contains my auxilary scripts to work with darknet deep learning famework
-1. [How to reproduce YOLOv2 anchors for yolo-voc.cfg?](#how-to-reproduce-yolov2-anchors-for-yolo-voccfg)
+1. [How to compute/reproduce YOLOv2 anchors for yolo-voc.cfg?](#how-to-reproduce-yolov2-anchors-for-yolo-voccfg)
 2. [How to visualize genereted anchors?](#how-to-visualize-genereted-anchors)
 3. [Is gen_anchors.py same as YOLOv2 anchor computation?](#is-gen_anchorspy-same-as-yolov2-anchor-computation)
 4. [How to get anchors if My input for network is bigger than 416?](#how-to-get-anchors-if-my-input-for-network-is-bigger-than-416)
 5. [How to plot YOLO loss](#how-to-plot-yolo-loss)
 6. [YOLO and Anchors tutorial](http://christopher5106.github.io/object/detectors/2017/08/10/bounding-box-object-detectors-understanding-yolo.html) 
 
-### How to reproduce YOLOv2 anchors for yolo-voc.cfg?
+### How to compute/reproduce YOLOv2 anchors for yolo-voc.cfg?
 
 1. Download The Pascal VOC Data and unpack it to directory `build\darknet\x64\data\voc` will be created dir `build\darknet\x64\data\voc\VOCdevkit\`:
     * http://pjreddie.com/media/files/VOCtrainval_11-May-2012.tar
