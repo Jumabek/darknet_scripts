@@ -51,7 +51,7 @@ def main(argv):
             w=int (w*stride)
             h=int(h*stride)
             print w,h
-            offset_x = 10+i*stride_w # this offset is just to make sure anchors do not overlap each other
+            offset_x = 10+i*stride_w # this offset is just to make sure starting coordinates of anchors do not overlap each other
             offset_y = 10+i*stride_h
             
             cv2.rectangle(blank_image,(offset_x,offset_y),(offset_x+w,offset_y+h),colors[i])
