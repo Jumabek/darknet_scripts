@@ -1,5 +1,5 @@
 # darknet_scripts
-This repo contains my auxilary scripts to work with darknet deep learning famework
+Auxilary scripts for working with darknet deep learning famework (2017)  
 1. [How to compute/reproduce YOLOv2 anchors for yolo-voc.cfg?](#how-to-reproduce-yolov2-anchors-for-yolo-voccfg)
 2. [How to visualize genereted anchors?](#how-to-visualize-genereted-anchors)
 3. [Is gen_anchors.py same as YOLOv2 anchor computation?](#is-gen_anchorspy-same-as-yolov2-anchor-computation)
