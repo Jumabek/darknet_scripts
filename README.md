@@ -1,4 +1,4 @@
-# darknet_scripts - YOLO / YOLOv2 / YOLOv3 / YOLOv4 / YOLOv5 / YOLOv7
+# darknet_scripts - YOLO / YOLOv2 / YOLOv3 / YOLOv4 / YOLOv5 / YOLOv7 / YOLOv8
 Auxilary scripts for working with darknet deep learning famework (2017)  
 1. [How to compute/reproduce YOLOv2 anchors for yolo-voc.cfg?](#how-to-reproduce-yolov2-anchors-for-yolo-voccfg)
 2. [How to visualize genereted anchors?](#how-to-visualize-genereted-anchors)
